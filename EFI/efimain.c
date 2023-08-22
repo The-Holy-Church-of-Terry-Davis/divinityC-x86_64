@@ -5,6 +5,10 @@
 #include "efi.h"
 #include "efihelpers.h"
 
+extern int GetInt();
+
+int main() { }
+
 // This is like int main() in a typical C program.
 // In this case, we create an ImageHandle for the overall EFI interface,
 // as well as a System Table pointer to the EFI_SYSTEM_TABLE struct.
@@ -20,6 +24,15 @@ EFI_STATUS efi_main(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE *SystemTable)
     efi_set_color(SystemTable, EFI_LIGHTGRAY);
 
     efi_print(SystemTable, L"EFI\r\n");
+
+    
+    int x = GetInt();
+    if(x == 5)
+    {
+        efi_print(SystemTable, L"IT WORKS OMG\r\n");
+    }
+    //char c = x + '0';
+    //SystemTable->ConOut->OutputString(SystemTable->ConOut, &c);
 
     efi_cprint(SystemTable, L"\nHit any key...\r\n", EFI_LIGHTGREEN);
 
